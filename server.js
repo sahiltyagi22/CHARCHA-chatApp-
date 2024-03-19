@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express");
 const path = require("path");
 const http = require("http");
@@ -72,6 +74,6 @@ app.get("/", (req, res) => {
   res.sendFile("index");
 });
 
-server.listen(3001, () => {
+server.listen(process.env.PORT || 3001, () => {
   console.log("server is running");
 });
