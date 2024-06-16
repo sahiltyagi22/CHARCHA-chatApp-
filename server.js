@@ -17,7 +17,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const appName = "charCha";
+const appName = "Alumni";
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 io.on("connection", (socket) => {
   socket.on("joinRoom", ({ username, room }) => {
     // getting user details and inserting user into a users array
+    console.log(room);
     const user = joinUser(socket.id, username, room);
 
     socket.join(user.room);
@@ -74,7 +75,7 @@ app.get("/", (req, res) => {
   res.sendFile("index");
 });
 
-const PORT = process.env.PORT || 3001
+const PORT =  3001
 
 server.listen(PORT, () => {
   console.log(`server is running on ${PORT} `);
